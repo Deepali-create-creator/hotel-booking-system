@@ -57,39 +57,27 @@ cd hotel-booking-system
 cd HotelBookingApp
 
 Update appsettings.json Connection String
-json
-Copy
-Edit
+
 "ConnectionStrings": {
   "DefaultConnection": "Server=.;Database=HotelBookingDb;Trusted_Connection=True;TrustServerCertificate=True;"
 }
 🛠️ Run Database Migrations
-bash
-Copy
-Edit
+
 dotnet ef database update
 ▶️ Start the Backend
-bash
-Copy
-Edit
+
 dotnet run
 Backend will run at https://localhost:7237
 
 
 Frontend Setup (Vue.js)
-bash
-Copy
-Edit
+
 cd ../Hotel-booking-frontend
 📦 Install Dependencies
-bash
-Copy
-Edit
+
 npm install
 ▶️ Start the Frontend Dev Server
-bash
-Copy
-Edit
+
 npm run dev
 Frontend runs at: http://localhost:5173
 
