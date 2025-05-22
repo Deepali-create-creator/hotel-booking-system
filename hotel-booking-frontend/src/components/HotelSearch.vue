@@ -1,13 +1,17 @@
 <template>
   <div class="hotel-search">
-    <input v-model="searchLocation" placeholder="Where are you going?" />
+    <select v-model="searchLocation">
+      <option value="">Select a location</option>
+      <option v-for="loc in locations" :key="loc" :value="loc">{{ loc }}</option>
+    </select>
+
     <input v-model="searchName" placeholder="Hotel name (optional)" />
     <button @click="searchHotels">Search</button>
   </div>
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import axios from 'axios'
 
 export default {
@@ -15,28 +19,37 @@ export default {
   setup(props, { emit }) {
     const searchName = ref('')
     const searchLocation = ref('')
+    const locations = ref([])
+
+    const fetchLocations = async () => {
+      try {
+        const res = await axios.get('https://localhost:7237/api/Hotel/locations')
+        locations.value = res.data
+      } catch (err) {
+        console.error('Failed to fetch locations', err)
+      }
+    }
 
     const searchHotels = async () => {
-    try {
-      const res = await axios.get('https://localhost:7237/api/Hotel/search', {
-        params: {
-          name: searchName.value.trim(),
-          location: searchLocation.value.trim()
-        }
-      })
-      emit('search-results', res.data)
-    } catch (err) {
-      console.error('Failed to fetch hotels', err)
+      try {
+        const res = await axios.get('https://localhost:7237/api/Hotel/search', {
+          params: {
+            name: searchName.value.trim(),
+            location: searchLocation.value.trim()
+          }
+        })
+        emit('search-results', res.data)
+      } catch (err) {
+        console.error('Failed to fetch hotels', err)
+      }
     }
-  }
 
+    onMounted(fetchLocations)
 
-    return { searchName, searchLocation, searchHotels }
+    return { searchName, searchLocation, searchHotels, locations }
   }
 }
 </script>
-
-
 
 <style scoped>
 .hotel-search {
@@ -45,6 +58,7 @@ export default {
   gap: 10px;
 }
 
+.hotel-search select,
 .hotel-search input {
   padding: 12px;
   border-radius: 6px;
@@ -73,6 +87,7 @@ export default {
     align-items: center;
   }
 
+  .hotel-search select,
   .hotel-search input {
     flex: 1;
   }
