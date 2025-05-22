@@ -1,0 +1,15 @@
+# Backend (.NET Core)
+HotelBookingApp/bin/
+HotelBookingApp/obj/
+HotelBookingApp/*.user
+HotelBookingApp/*.suo
+HotelBookingApp/*.vs/
+
+# Frontend (Vue/Node)
+Hotel-booking-frontend/node_modules/
+Hotel-booking-frontend/dist/
+
+# System Files
+*.log
+.DS_Store
+.vscode/
