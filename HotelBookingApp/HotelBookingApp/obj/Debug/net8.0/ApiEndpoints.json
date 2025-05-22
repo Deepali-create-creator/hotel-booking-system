@@ -49,6 +49,16 @@
   },
   {
     "ContainingType": "HotelBookingApp.Controllers.HotelController",
+    "Method": "GetAllLocations",
+    "RelativePath": "api/Hotel/locations",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HotelBookingApp.Controllers.HotelController",
     "Method": "SearchHotels",
     "RelativePath": "api/Hotel/search",
     "HttpMethod": "GET",

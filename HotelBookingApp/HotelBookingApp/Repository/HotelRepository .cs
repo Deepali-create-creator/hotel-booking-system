@@ -35,5 +35,15 @@ namespace HotelBookingApp.Repository
                 .ToListAsync();
         }
 
+        public async Task<List<string>> GetAllLocationsAsync()
+        {
+            return await _context.Hotels
+                .Select(h => h.Location)
+                .Distinct()
+                .OrderBy(loc => loc)
+                .ToListAsync();
+        }
+
+
     }
 }

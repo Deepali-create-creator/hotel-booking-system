@@ -19,5 +19,13 @@ namespace HotelBookingApp.Controllers
             var results = await _hotelRepository.SearchHotelsByLocationAsync(name, location);
             return Ok(results);
         }
+
+        [HttpGet("locations")]
+        public async Task<IActionResult> GetAllLocations()
+        {
+            var locations = await _hotelRepository.GetAllLocationsAsync();
+            return Ok(locations);
+        }
+
     }
 }
